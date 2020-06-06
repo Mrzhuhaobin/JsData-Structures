@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn {
+            width: 200px;
+            height: 50px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            background-color: #eee;
+            text-align: center;
+            line-height: 50px;
+            color: #333;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn" id="btn" onclick="doSomeThings(this)">发送消息按钮</div>
+    <script>
+        var i = 0;
+        function doSomeThings (that) {
+            throttle(changeDom, that);
+        }
+        function throttle (methods, context) {
+            clearTimeout(methods.tId);
+            methods.tId = setTimeout(function () {
+                methods.call(context);
+            }, 800)
+        }
+        function changeDom () {
+            this.style.height = this.offsetWidth + 'px';
+            this.style.lineHeight = this.offsetWidth + 'px';
+            i++;
+            this.innerText = '改变后' + i;
+        }
+        // function doSomeThings () {
+        //     clearTimeout(doSomeThings.timer);
+        //     doSomeThings.timer = setTimeout(_ => {
+        //         console.log('测试this指向', this)
+        //         this.style.height = this.offsetWidth + 'px';
+        //         i++;
+        //         this.innerText = '改变后' + i;
+        //     }, 800)
+        // }
+        // document.getElementById('btn').onclick = doSomeThings
+        // function doSomeThings (that) {
+        //     that.style.height = that.offsetWidth + 'px';
+        //     that.style.lineHeight = that.offsetWidth + 'px';
+        //     i++;
+        //     that.innerText = '改变后' + i;
+        // }
+        console.log([].__proto__)
+    </script>
+</body>
+</html>
